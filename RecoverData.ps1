@@ -16,16 +16,16 @@ New-Item \\$Destination\Recovery\$Name\UserData -ItemType Directory
 New-Item \\$Destination\Recovery\$Name\Non-WindowsData -ItemType Directory
 
 #fix junctions problem
-foreach ($i in (Get-ChildItem J:\Users)){
-    takeown /f "J:\users\$i"
-    cmd /c "icacls J:\Users\$i /grant "everyone":(OI)(CI)M"
-    takeown /f "J:\Users\$i\Application Data"
-    cmd /c "icacls "J:\Users\$i\Application Data" /grant "everyone":(OI)(CI)M"
-    rmdir "j:\Users\$i\Application Data" -Force
-    cmd /c "icacls "J:\Users\$i\Appdata\Local\Application Data" /grant "everyone":(OI)(CI)M"
-    rmdir "J:\Users\$i\Appdata\Local\Application Data" -Force
-    cmd /c "icacls "J:\Users\$i\Local Settings" /grant "everyone":(OI)(CI)M"
-    rmdir "J:\Users\$i\Local Settings" -Force
+foreach ($i in (Get-ChildItem $DRIVE\Users)){
+    takeown /f "$DRIVE\users\$i"
+    cmd /c "icacls $DRIVE\Users\$i /grant "everyone":(OI)(CI)M"
+    takeown /f "$DRIVE\Users\$i\Application Data"
+    cmd /c "icacls "$DRIVE\Users\$i\Application Data" /grant "everyone":(OI)(CI)M"
+    rmdir "$DRIVE\Users\$i\Application Data" -Force
+    cmd /c "icacls "$DRIVE\Users\$i\Appdata\Local\Application Data" /grant "everyone":(OI)(CI)M"
+    rmdir "$DRIVE\Users\$i\Appdata\Local\Application Data" -Force
+    cmd /c "icacls "$DRIVE\Users\$i\Local Settings" /grant "everyone":(OI)(CI)M"
+    rmdir "$DRIVE\Users\$i\Local Settings" -Force
 
 }
 
